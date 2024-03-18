@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Item_main() {
+export default function () {
   return (
-    <div>Item_main</div>
+    <div></div>
   )
 }
