@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import itemRoutes from "./routes/Item.route.js"
 dotenv.config();
 
 //Database connection to mongoDB cloud with console feedback and error feedback
@@ -16,4 +17,7 @@ const app=express();
 
 app.listen(3000,() => {
     console.log('Server listing to port 3000')
-})
+});
+
+//API route
+app.use("/api/Item", itemRoutes);
