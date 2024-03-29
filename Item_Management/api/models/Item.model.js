@@ -1,25 +1,24 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 //creating the DB schema for the Item management
-const itemSchema = new mongoose.Schema({
-
-    ItemID:{
-        Type:String,
-        required:true,
-        unique:true,
+const itemSchema = new mongoose.Schema(
+    {
+        ItemID: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    ItemDiscription:{
-        Type:String,
-        required:true,
-        unique:true,
+        ItemDiscription:{
+        type: String,
+        required: true,
     },
-    ItemType:{
-        Type:String,
-        required:true,
+        ItemType:{
+        type: String,
+        required: true,
     },
-    ItemNoOfUints:{
-        Type:Int,
-        required:true,
+        ItemNoOfUints:{
+        type: Number,
+        required: true,
     },
 },{timestamps:true});
 
