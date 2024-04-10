@@ -1,6 +1,7 @@
 import express from "express";
 import  mongoose  from "mongoose";
 import dotenv from 'dotenv';
+import adminRouter from './routes/admin.route.js';
 
 dotenv.config();
 
@@ -13,4 +14,6 @@ const app = express();
 
 app.listen(3000, () => {
     console.log('Sever is running on pote 3000 !!');
-})
+});
+
+app.use('/api/admin', adminRouter);
