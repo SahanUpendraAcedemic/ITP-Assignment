@@ -3,4 +3,5 @@ export const test = (req, res) => {
 
         message: ' Api is woraking !!',
     });
-}
+};
+
