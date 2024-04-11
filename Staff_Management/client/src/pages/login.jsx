@@ -44,7 +44,7 @@ export default function login() {
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Supplier Login</h1>
+      <h1 className='text-3xl text-center font-semibold my-7'>Supervisor Login</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
 
         <input type="text" placeholder='Email' id='email' 
