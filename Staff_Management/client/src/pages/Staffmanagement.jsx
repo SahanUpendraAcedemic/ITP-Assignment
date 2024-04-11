@@ -17,6 +17,12 @@ export default function Staffmanagement() {
     <Link to='/Shiftlist'>
       <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Shift List</div>
     </Link>
+    <Link to='/AssignWorkerToShift'>
+      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Assign Workers To Shifts</div>
+    </Link>
+    <Link to='/WorkersAssignList'>
+      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Workers  Shift Schedule</div>
+    </Link>
     <Link to='/login'>
       <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Login</div>
     </Link>

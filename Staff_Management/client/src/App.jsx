@@ -12,6 +12,8 @@ import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 import Updatestaff from './pages/Updatestaff';
 import Updateshift from './pages/Updateshift';
+import WorkersAssignList from './pages/WorkersAssignList';
+import AssignWorkerToShift from './pages/AssignWorkerToShift';
 
 export default function App() {
   return (
@@ -27,6 +29,8 @@ export default function App() {
         <Route path="/Addshift" element={<Addshift />} />
         <Route path="/Shiftlist" element={<Shiftlist />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/AssignWorkerToShift" element={<AssignWorkerToShift />} />
+        <Route path="/WorkersAssignList" element={<WorkersAssignList/>}/>
       </Routes>
     </Router>
   );
