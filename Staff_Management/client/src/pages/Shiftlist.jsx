@@ -59,7 +59,7 @@ export default function Shiftlist() {
       <div className="mb-4 flex">
         <input
           type="text"
-          placeholder="Search by shift name"
+          placeholder="Search by shift Name"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="p-3 rounded-lg border-2 border-gray-300 mr-2 focus:outline-none focus:border-blue-500"
