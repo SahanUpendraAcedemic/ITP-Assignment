@@ -20,18 +20,20 @@ export const createWorkersShiftSchedule = async (req, res) => {
         }
 
         // Extract ids and names from staff
-        const staffIdsArray = staff.map(member => member._id.toString());
+        const staffIdsArray = staff.map(member => member.id.toString());
         const staffNamesArray = staff.map(member => member.name);
+        const staffTypeArray = staff.map(member => member.type);
 
         // Create new workers shift schedule
         const newWorkersShiftSchedule = new WorkersShiftSchedule({ 
             shiftname: shift.shiftname,
-            staff: staff.map(member => ({ name: member.name, id: member._id.toString() })) // Ensure staff.name and staff._id are valid strings
+            staff: staff.map(member => ({ name: member.name,type: member.type, id: member.id.toString() })) // Ensure staff.name and staff._id are valid strings
         });
 
         // Set id and name fields for validation
         newWorkersShiftSchedule.id = staffIdsArray.join(", "); // Joining the array elements into a single string
-        newWorkersShiftSchedule.name = staffNamesArray.join(", "); // Joining the array elements into a single string
+        newWorkersShiftSchedule.name = staffNamesArray.join(", ");
+        newWorkersShiftSchedule.type = staffTypeArray.join(", ");  // Joining the array elements into a single string
 
         await newWorkersShiftSchedule.save();
 
