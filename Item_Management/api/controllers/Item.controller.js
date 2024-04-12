@@ -27,3 +27,24 @@ export const GetItems = async (req,res,next) => {
     };
     
 };
+
+export const DeleteItems = async(req,res,next) => {
+    try{
+        const id=req.params.ItemID;
+        console.log(id);
+        const item = await Item.findOneAndDelete(req.params.ItemID);
+        res.json({massage:"Item Deleted!"});
+
+    }
+    catch(error){
+        next(error);
+    }
+}
+
+export const UpdateItems = async(req,res,next) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}

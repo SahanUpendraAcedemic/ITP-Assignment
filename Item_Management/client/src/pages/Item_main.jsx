@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 export default function Item_main() {
   const [AllItems,getAllItems] = useState([]);
+
   const [loading, setLoading] = useState(false); //a save state for loading status
   const [error,setError] = useState(false); //a save state for an error mostly for fetching
 
@@ -23,9 +24,26 @@ export default function Item_main() {
     setError(true); //if an error occurs set error true
   }};
   fetchItems(); //running async function to fetch data from api
+
+}, [setLoading, setError, getAllItems]);
+
+const SetItemDelete = async (id) => {
   
-}, []);
-console.log(AllItems);
+  try {
+    const res = await fetch ('api/Item/item_delete',
+    {method:'DELETE',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify()});
+
+  console.log(id);
+  const data = await res.json();
+  console.log(data);
+  getAllItems(AllItems.filter((item) => item.ItemID !== data.ItemID));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 //rendering all the items from the api
 const renderItems = (data) => {
   console.log(data);
@@ -35,17 +53,16 @@ const renderItems = (data) => {
         {data.map((item) => (
           <div key={item.ItemID} className='my-3 justify-between w-full flex-row outline-2 rounded-md outline outline-black outline-offset-2 '>
             <div className=' bg-slate-200 flex justify-between content-start p-5 rounded-md'>
-              <p className='text-center text-lg p-5'>ItemID: {item.ItemID}</p>
-              <p className='text-center text-lg p-5'>Item Type: {item.ItemType }</p>
-              <p className='text-center text-lg p-5'>Item Discription: {item.ItemDiscription}</p>
-              <p className='text-center text-lg p-5'>No of Item: {item.ItemNoOfUints}</p>
+              <p className='text-center text-lg p-5'>ItemID:{item.ItemID}</p>
+              <p className='text-center text-lg p-5'>Item Type:{item.ItemType }</p>
+              <p className='text-center text-lg p-5'>Item Discription:{item.ItemDiscription}</p>
+              <p className='text-center text-lg p-5'>Units(Kg/L): {item.ItemNoOfUints}</p>
             <div className='flex gap-4 justify-between p-5'>
-              <Link to={`/Item_edit/${item.ItemID}`}>
+
               <button className='w-20 bg-blue-600 rounded-md p-3  text-white' >Edit</button>
-              </Link>
-              <Link to={`/Item_delete/${item.ItemID}`}>
-              <button className='w-20 bg-blue-600 rounded-md p-3  text-white' >Delete</button>
-              </Link>
+              
+              <button className='w-20 bg-blue-600 rounded-md p-3  text-white' onClick={()=>SetItemDelete(item.ItemID)}>Delete</button>
+              
             </div>
             </div>
           </div>
@@ -59,9 +76,15 @@ const renderItems = (data) => {
     <div className='p-10 ml-72 justify-between'>
       <div className='flex justify-between p-8'>
       <h1 className='text-3xl font-semibold'>Item Mangement</h1>
+      <div className=' ml-8 flex justify-between gap-5 items-center'>
+      <input className='w-80 h-13 rounded-md outline outline-2 outline-black p-4' type='text' placeholder='Search Items'></input>
+      <Link to=''>
+      <button className='w-20 h-100 bg-blue-600 rounded-md p-3  text-white' >Search</button></Link>
+      
       <Link to='/Item_add'>
-      <button className='w-20 bg-blue-600 rounded-md p-3  text-white' >New+</button>
+      <button className='w-20 h-100 bg-blue-600 rounded-md p-3  text-white' >New+</button>
       </Link>
+      </div>
       </div>
       
       <div className='flex bg-slate-300 justify-between p-8 rounded-md overflow-auto w-full h-min-2 h-screen  '>
