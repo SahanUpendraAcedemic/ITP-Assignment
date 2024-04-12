@@ -1,9 +1,10 @@
 import express from "express";
-import {test} from '../controllers/Item.controller.js';
+import {AddItems, GetItems} from '../controllers/Item.controller.js';
 
 const router = express.Router();
 
-//getting a test massage to check API route
-router.post('/',test);
+//getting massage from API route
+router.post('/',AddItems);
+router.post('/getitem',GetItems);
 
 export default router;

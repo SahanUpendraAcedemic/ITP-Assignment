@@ -1,6 +1,6 @@
 import Item from '../models/Item.model.js';
 
-export const test = async (req,res,next) => {
+export const AddItems = async (req,res,next) => {
     const{ItemID,ItemDiscription,ItemType,ItemNoOfUints}=req.body; 
     const newItem = new Item({
         ItemID,
@@ -14,5 +14,16 @@ export const test = async (req,res,next) => {
     } catch (error) {
         next(error);
     }
+    
+};
+
+export const GetItems = async (req,res,next) => {
+    try{
+        const allItems = await Item.find({});
+        res.status(200).json(allItems);     
+    }
+    catch(error){
+        next(error);
+    };
     
 };
