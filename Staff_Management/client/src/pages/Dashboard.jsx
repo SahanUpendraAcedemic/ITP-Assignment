@@ -1,9 +1,17 @@
 // Dashboard.jsx
 
-import React from 'react';
+
 import { Link } from "react-router-dom"
+import React, { useState } from 'react';
+
 
 const Dashboard = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
   return (
     <div>
                       <div className="dashboard-container bg-gray-900 w-72 h-screen fixed left-0">
@@ -77,15 +85,20 @@ const Dashboard = () => {
                           </svg>
                       </button>
                       <Link to='/'>
-                      <button className=" w-60 flex items-center justify-start px-4 py-2 rounded-xl mt-3 ">
-                          
-                      <div className="bg-blue-500 font-normal text-base w-40 text-white font-sans ml-14 flex justify-start rounded-full">
-                          
-                          Staff Management
-                          
-                          </div>
-                          
-                      </button>
+                      <button onClick={toggleDropdown} className="w-60 flex items-center justify-start px-4 py-2 rounded-xl mt-3 focus:outline-none">
+                <div className="bg-blue-500 font-normal text-base w-40 text-white font-sans ml-14 flex justify-start rounded-full">
+                    Staff Management
+                </div>
+            </button>
+            {isOpen && (
+                <div className="dropdown-content absolute bg-white rounded-lg shadow-md mt-2">
+                    <Link to="/Addworkers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Add Workers</Link>
+                    <Link to="/Workerlist" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Worker List</Link>
+                    <Link to="/Addshift" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Add Shift</Link>
+                    <Link to="/Shiftlist" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Shift List</Link>
+                    
+                </div>
+            )}
                       </Link>
                   </div>
               </div>

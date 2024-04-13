@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import React from 'react'
 
+
 export default function Header() {
   return (
     <div className="headerclass fixed top-0 right-0 w-5/6 h-12 bg-gray-200 flex flex-row justify-end  px-20 items-end">
