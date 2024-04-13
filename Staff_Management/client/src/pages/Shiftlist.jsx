@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './Dashboard';
 
 export default function Shiftlist() {
   const [shiftList, setShiftList] = useState([]);
@@ -54,8 +55,19 @@ export default function Shiftlist() {
   };
 
   return (
+
+    <div className='flex'>
+<Dashboard/>
+
+
+
+
+
+
+
+<div className="p-8 w-4/5 ml-72">
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Shift List</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center mt-4">Shift List</h1>
       <div className="mb-4 flex">
         <input
           type="text"
@@ -106,6 +118,8 @@ export default function Shiftlist() {
           )}
         </tbody>
       </table>
+    </div>
+    </div>
     </div>
   );
 }

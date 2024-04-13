@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerStart, registerSuccess, registerFailure } from '../redux/staff/staffSlice';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom"
+import Dashboard from './Dashboard';
 
 export default function Addworkers() {
   const [formData, setFormData] = useState({
@@ -39,8 +41,12 @@ export default function Addworkers() {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className="text-3xl font-bold mb-6 text-center">Add Workers</h1>
+
+    <div className='flexy'>
+    <Dashboard />
+
+<div className='p-3 max-w-lg mx-auto w-4/5 mr-96'>
+      <h1 className="text-3xl font-bold mb-6 text-center mt-16">Add Workers</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input type="text" placeholder='Name' id='name'
           className='bg-slate-100 p-3 rounded-lg border-2 border-zinc-400'
@@ -129,6 +135,7 @@ export default function Addworkers() {
         </button>
       </form>
       {error && <p className="text-red-700 mt-5">{error}</p>}
+    </div>
     </div>
   );
 }

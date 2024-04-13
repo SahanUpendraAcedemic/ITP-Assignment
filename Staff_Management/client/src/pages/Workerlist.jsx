@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './Dashboard';
+
 
 export default function Workerlist() {
   const [staffList, setStaffList] = useState([]);
@@ -71,8 +73,15 @@ export default function Workerlist() {
   };
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Worker List</h1>
+<div className='flex'>
+<Dashboard />
+
+
+
+
+
+    <div className="p-8 w-3/5 ml-72">
+      <h1 className="text-3xl font-bold mb-6 text-center mt-10 ml-64">Worker List</h1>
       <div className="mb-4 flex">
         <input
           type="text"
@@ -116,7 +125,7 @@ export default function Workerlist() {
           Labor
         </label>
       </div>
-      <table className="w-full border-collapse">
+      <table className="w-full border-collapse mt-14">
         {/* Table header */}
         <thead>
           <tr className="bg-gray-200">
@@ -161,6 +170,7 @@ export default function Workerlist() {
           )}
         </tbody>
       </table>
+    </div>
     </div>
   );
 }

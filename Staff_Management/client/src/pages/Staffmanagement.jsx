@@ -1,31 +1,39 @@
 import { Link } from "react-router-dom"
+import Dashboard from "./Dashboard";
 
 export default function Staffmanagement() {
   return (
-    <div className='p-10 max-w-lg mx-auto flex flex-col gap-4 text-center'>
 
-    <h1 className="text-3xl font-bold mb-6 text-center">Manage Staff Members</h1>
+    <div className="flex">
+
+<Dashboard />
+
+
+
+
+    <div className='p-10 max-w-lg mx-auto w-4/5 flex flex-col gap-4 text-center mt-10 mr-96' >
+
+    <h1 className="text-3xl font-bold mb-10 text-center">Manage Staff Members</h1>
     <Link to='/Addworkers'>
-      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Add Workers</div>
+      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-4">Add Workers</div>
     </Link>
     <Link to='/Workerlist'>
-      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Worker List</div>
+      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-4">Worker List</div>
     </Link>
     <Link to='/Addshift'>
-      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Add Shift</div>
+      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-4">Add Shift</div>
     </Link>
     <Link to='/Shiftlist'>
-      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Shift List</div>
+      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-4">Shift List</div>
     </Link>
     <Link to='/AssignWorkerToShift'>
-      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Assign Workers To Shifts</div>
+      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-4">Assign Workers To Shifts</div>
     </Link>
-    <Link to='/WorkersAssignList'>
+    {/*<Link to='/WorkersAssignList'>
       <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Workers  Shift Schedule</div>
-    </Link>
-    <Link to='/login'>
-      <div className="bg-slate-200 mb-4 hover:opacity-80 rounded-lg p-3">Login</div>
-    </Link>
+  </Link>*/}
+    </div>
+
     </div>
 
   );

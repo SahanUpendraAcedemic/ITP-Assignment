@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom"
+import Dashboard from './Dashboard';
 
 export default function AssignWorkerToShift() {
   const [shifts, setShifts] = useState([]);
@@ -59,10 +61,18 @@ export default function AssignWorkerToShift() {
   };
 
   return (
+    <div className='flex'>
+    
+
+    <Dashboard />
+
+
+
+     <div className='mt-14 container mx-auto w-3/5 ml-96 '>        
     <div className="container mx-auto">
       <div className="flex">
         <div className="w-1/2 p-4">
-          <h2 className="text-2xl font-bold mb-4">Select Shift</h2>
+          <h2 className="text-2xl font-bold mb-4 text-blue-500">Select Shift</h2>
           <select value={selectedShift} onChange={handleShiftChange} className="w-full p-2 mb-4 border rounded">
             <option value="">Select Shift</option>
             {shifts.map(shift => (
@@ -71,7 +81,7 @@ export default function AssignWorkerToShift() {
           </select>
         </div>
         <div className="w-1/2 p-4">
-          <h2 className="text-2xl font-bold mb-4">Select Staff</h2>
+          <h2 className="text-2xl font-bold mb-4  text-blue-500">Select Staff</h2>
           {staff.map(member => (
             <div key={member._id} className="flex items-center mb-2">
               <input
@@ -88,10 +98,10 @@ export default function AssignWorkerToShift() {
       </div>
       
       {/* Display selected staff for each shift */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid   gap-4 ">
         {shifts.map(shift => (
           <div key={shift._id} className="p-4 border rounded-md shadow-md">
-            <h2 className="text-xl font-bold mb-4">{shift.shiftname}</h2>
+            <h2 className="text-xl font-bold mb-4 text-slate-500">{shift.shiftname}</h2>
             <div className="overflow-x-auto">
               <table className="w-full table-auto">
                 <thead>
@@ -124,6 +134,8 @@ export default function AssignWorkerToShift() {
           </div>
         ))}
       </div>
+      </div>
     </div>
+    </div> 
   );
 }

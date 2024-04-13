@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom"
+import Dashboard from './Dashboard';
 
 export default function Updateshift() {
   const [formData, setFormData] = useState({
@@ -80,11 +82,20 @@ export default function Updateshift() {
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Update Shift</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+
+<div className='flex'>
+
+<Dashboard />
+
+
+
+
+
+    <div className='p-3 max-w-lg mx-auto mt-10 mr-96'>
+      <h1 className='text-3xl text-center font-semibold my-7 mb-11'>Update Shift</h1>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-8 mt-5'>
         {/* Input fields to update shift details */}
-        <input type="text" placeholder='Shift Name' id='shiftname' className={`bg-slate-100 p-3 rounded-lg border-2 border-zinc-400 ${formData.shiftname ? 'cursor-not-allowed opacity-50' : ''}`} value={formData.shiftname || ''} onChange={handleChange} required disabled={formData.shiftname} />
+        <input  type="text" placeholder='Shift Name' id='shiftname' className={`bg-slate-100 p-3 rounded-lg border-2 border-zinc-400 ${formData.shiftname ? 'cursor-not-allowed opacity-50' : ''}`} value={formData.shiftname || ''} onChange={handleChange} required disabled={formData.shiftname} />
         <input type="text" placeholder='Start Time' id='starttime' className={`bg-slate-100 p-3 rounded-lg border-2 border-zinc-400 ${formData.starttime ? 'cursor-not-allowed opacity-50' : ''}`} value={formData.starttime || ''} onChange={handleChange} required disabled={formData.starttime} />
         <input type="text" placeholder='End Time' id='endtime' className={`bg-slate-100 p-3 rounded-lg border-2 border-zinc-400 ${formData.endtime ? 'cursor-not-allowed opacity-50' : ''}`} value={formData.endtime || ''} onChange={handleChange} required disabled={formData.endtime} />
         {/* Checkboxes for selecting days */}
@@ -107,6 +118,8 @@ export default function Updateshift() {
         </button>
       </form>
       {error && <p className="text-red-700 mt-5">{error}</p>}
+    </div>
+
     </div>
   );
 }

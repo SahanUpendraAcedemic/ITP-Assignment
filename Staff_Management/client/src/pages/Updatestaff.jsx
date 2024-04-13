@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom"
+import Dashboard from './Dashboard';
 
 export default function Updatestaff() {
   const [formData, setFormData] = useState({
@@ -61,8 +63,16 @@ export default function Updatestaff() {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Update Worker</h1>
+
+    <div className='flex'>
+
+<Dashboard/>
+
+
+
+
+<div className='p-3 max-w-lg mx-auto w-4/5 mr-96'>
+      <h1 className='text-3xl text-center font-semibold my-7 mt-10'>Update Worker</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         {/* Input fields to update staff details */}
         <input type="text" placeholder='Name' id='name' className={`bg-slate-100 p-3 rounded-lg border-2 border-zinc-400 ${formData.name ? 'cursor-not-allowed opacity-50' : ''}`} value={formData.name || ''} onChange={handleChange} required disabled />
@@ -85,6 +95,7 @@ export default function Updatestaff() {
         </button>
       </form>
       {error && <p className="text-red-700 mt-5">{error}</p>}
+    </div>
     </div>
   );
 }
