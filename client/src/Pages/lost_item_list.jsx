@@ -19,6 +19,7 @@ const ItemsPage = () => {
 
     fetchItems();
   }, []);
+  
 
   const handleDelete = async (id) => {
     try {
@@ -139,7 +140,7 @@ const ItemsPage = () => {
             </Link>
            
           </div>
-          
+
         </div>
         <table className="w-full">
           <thead>
