@@ -122,14 +122,36 @@ const ItemsPage = () => {
     return true;
   });
 
+  const handleSearchByItemId = () => {
+    if (searchItemId.trim() === '') {
+      // If searchItemId is empty, show all items
+      setFilteredItems(items);
+    } else {
+      // If searchItemId is not empty, filter items based on searchItemId
+      const searchedItems = items.filter(item => item.itemId.includes(searchItemId));
+      setFilteredItems(searchedItems);
+    }
+  };
   return (
     <div className="flex justify-center items-center h-full">
       <div className="border border-blue-500 p-8 rounded-lg mt-44">
         <div className="flex flex-row justify-between">
-          <div className="w-1/2">
+          <div className="w-1/4">
             <h1 className="text-3xl font-bold mb-6">All lost Items</h1>
+            
           </div>
+          <div className="w-1/4">
+          <input type="text" /*value={searchItemId} onChange={(e) => setSearchItemId(e.target.value)} */placeholder="Search by Item ID" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
+          <button onClick={handleSearchByItemId} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded ml-1">
+              Search
+            </button>
+
+          </div>
+
+
+
           <div className="w-1/2 flex justify-end mb-5 items-center">
+        
             <div className="mr-4">
               <label htmlFor="startDate" className="mr-2">Start Date:</label>
               <input type="date" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
@@ -189,7 +211,8 @@ const ItemsPage = () => {
 
         </div>
       </div>
-      
+     
+           
     </div>
   );
 };
