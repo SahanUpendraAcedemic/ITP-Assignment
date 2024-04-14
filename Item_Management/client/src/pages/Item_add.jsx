@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Item_add() {
@@ -39,7 +40,7 @@ export default function Item_add() {
   return (
     <div className='bg-sky-900 ml-72' style={{padding:50,alignItems:'center'}}>
       <div className='bg-slate-200 rounded-xl p-10 mt-10'>
-        <h1 className='font-semibold text-3xl'>Add Item</h1>
+        <h1 className='font-semibold text-3xl'><Link to={'/'} >Item Management</Link>/Add Item</h1>
         <form onSubmit={handleSubmit} className='items-start justify-normal p-3'>
 
         ItemID<input className='w-full rounded-md p-3 text-center' 

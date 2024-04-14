@@ -24,7 +24,6 @@ export default function Item_main() {
     setError(true); //if an error occurs set error true
   }};
   fetchItems(); //running async function to fetch data from api
-  searchItems(); //searching the items
 }, []);
 
 const SetItemDelete = async (id) => { 
@@ -38,8 +37,8 @@ const SetItemDelete = async (id) => {
   }
 };
 
-const searchItems = AllItems.filter((item) => 
-  item.ItemType.toLowerCase().includes(search.toLowerCase()));
+/*const searchItems = AllItems.filter((item) => 
+  item.ItemType.toLowerCase().includes(search.toLowerCase()));*/
 
 //rendering all the items from the api
 const renderItems = (data) => {
