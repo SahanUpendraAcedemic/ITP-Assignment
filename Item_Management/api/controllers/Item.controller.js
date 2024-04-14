@@ -33,7 +33,9 @@ export const DeleteItems = async(req,res,next) => {
         const id=req.params.ItemID;
         console.log(id);
         const item = await Item.findOneAndDelete(req.params.ItemID);
-        res.json({massage:"Item Deleted!"});
+        if(!item){
+            return res.status(404).json({massage:"Item not found"});
+        }
 
     }
     catch(error){
@@ -42,6 +44,14 @@ export const DeleteItems = async(req,res,next) => {
 }
 
 export const UpdateItems = async(req,res,next) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+export const SearchItems = async(req,res,next) => {
     try {
         
     } catch (error) {

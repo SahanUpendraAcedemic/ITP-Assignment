@@ -6,6 +6,7 @@ export default function Item_add() {
   const [addItemData, setAddItemData] = useState({});
   const [error,setError] = useState(false); //a save state for an error mostly for fetching
   const [loading, setLoading] = useState(false); //a save state for loading status
+  const [success, setSuccess] = useState(false); //a save state for errorless status
 
   //fetching the data from the form via handelchange function
   const handleChange = (e) => {
@@ -23,18 +24,12 @@ export default function Item_add() {
       body:JSON.stringify(addItemData)}) //fetching the data from the api
     
       const data = await res.json(); //converting the data into json format
-      console.log(error); //logging the error
-      console.log(data)
       setLoading(false); //setting the loading status to false after sending the data
-      
+      setSuccess(true); //setting the success status to true after sending the data
       //sometimes try catch is ignored by the browser, so we need to check if the data is sent or not for further actions
       if(data.success==false) {
         setError(true);
-        return;} //setting the error status to true if the data is not sent
-
-      console.log(addItemData); //logging the data
-      console.log(res.body); //logging the data
-      
+        return;} //setting the error status to true if the data is not sent 
       
   } catch(error){
     setLoading(false); //setting the loading status to false after error
@@ -70,7 +65,7 @@ export default function Item_add() {
         <button className='w-full bg-red-600 rounded-md p-3 my-3 text-white'>{loading?'Adding Item...':'Add Item'}</button>
         <button type='reset' className='w-full bg-blue-600 rounded-md p-3  text-white'>Reset</button>
         </form>
-        <p className='text-red-700 mt-5 font-semibold align-middle'>{error && 'An Error Occured! Please try again'}</p>
+        <p className='text-red-700 mt-5 font-semibold align-middle'>{error && 'An Error Occured! Please try again'}{success && 'The Item added Successfully'}</p>
       </div>
       
     </div>

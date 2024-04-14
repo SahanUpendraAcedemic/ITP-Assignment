@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 export default function Item_main() {
   const [AllItems,getAllItems] = useState([]);
-
+  const [search, setSearch] = useState(''); //a save state for search bar
   const [loading, setLoading] = useState(false); //a save state for loading status
   const [error,setError] = useState(false); //a save state for an error mostly for fetching
 
@@ -24,49 +24,54 @@ export default function Item_main() {
     setError(true); //if an error occurs set error true
   }};
   fetchItems(); //running async function to fetch data from api
+  searchItems(); //searching the items
+}, []);
 
-}, [setLoading, setError, getAllItems]);
-
-const SetItemDelete = async (id) => {
-  
+const SetItemDelete = async (id) => { 
   try {
     const res = await fetch ('api/Item/item_delete',
     {method:'DELETE',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify()});
+    body:JSON.stringify()}).then((res) => res.json().then(window.location.reload()));
 
-  console.log(id);
-  const data = await res.json();
-  console.log(data);
-  getAllItems(AllItems.filter((item) => item.ItemID !== data.ItemID));
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
+const searchItems = AllItems.filter((item) => 
+  item.ItemType.toLowerCase().includes(search.toLowerCase()));
 
 //rendering all the items from the api
 const renderItems = (data) => {
-  console.log(data);
-  
     return (
       <div className='w-full '>
+        <table className=' w-full border-separate border-spacing-y-5'>
+          <thead className='bg-slate-700'>
+          <tr className=' outline outline-2 rounded-md m-5'>
+            <th className='text-center text-lg p-5'>ItemID</th>
+            <th className='text-center text-lg p-5'>Item Type</th>
+            <th className='text-center text-lg p-5'>Item Discription</th>
+            <th className='text-center text-lg p-5'>Units(Kg/L)</th>
+            <th className='text-center text-lg p-5'>Added Date</th>
+            <th className='text-center text-lg p-5'>Updated Date</th>
+            <th className='text-center text-lg p-5'>Action</th>
+            </tr>
+          </thead>
+          <tbody className='border-spacing-y-5'>
         {data.map((item) => (
-          <div key={item.ItemID} className='my-3 justify-between w-full flex-row outline-2 rounded-md outline outline-black outline-offset-2 '>
-            <div className=' bg-slate-200 flex justify-between content-start p-5 rounded-md'>
-              <p className='text-center text-lg p-5'>ItemID:{item.ItemID}</p>
-              <p className='text-center text-lg p-5'>Item Type:{item.ItemType }</p>
-              <p className='text-center text-lg p-5'>Item Discription:{item.ItemDiscription}</p>
-              <p className='text-center text-lg p-5'>Units(Kg/L): {item.ItemNoOfUints}</p>
-            <div className='flex gap-4 justify-between p-5'>
-
-              <button className='w-20 bg-blue-600 rounded-md p-3  text-white' >Edit</button>
-              
-              <button className='w-20 bg-blue-600 rounded-md p-3  text-white' onClick={()=>SetItemDelete(item.ItemID)}>Delete</button>
-              
-            </div>
-            </div>
-          </div>
+          <tr key={item.ItemID} className=' outline-2 rounded-md outline outline-black ' >
+              <td className=' text-sm p-5'>{item.ItemID}</td>
+              <td className=' text-sm p-5'>{item.ItemType }</td>
+              <td className=' text-sm p-5'>{item.ItemDiscription}</td>
+              <td className=' text-sm p-5'>{item.ItemNoOfUints}</td>
+              <td className=' text-sm p-5'>{new Date(item.createdAt).toDateString()}</td>
+              <td className=' text-sm p-5'>{new Date(item.updatedAt).toDateString()}</td>
+              <td><button className='w-20 bg-blue-600 rounded-md p-3  text-white  hover:bg-slate-700' >Edit</button></td>
+              <td><button className='w-20 bg-blue-600 rounded-md p-3  text-white   hover:bg-slate-700'  onClick={()=>SetItemDelete(item.ItemID)}>Delete</button> </td>
+          </tr>
         ))}
+        </tbody>
+        </table>
       </div>
     );
     };
@@ -74,15 +79,17 @@ const renderItems = (data) => {
   return (
     
     <div className='p-10 ml-72 justify-between'>
+
       <div className='flex justify-between p-8'>
       <h1 className='text-3xl font-semibold'>Item Mangement</h1>
       <div className=' ml-8 flex justify-between gap-5 items-center'>
-      <input className='w-80 h-13 rounded-md outline outline-2 outline-black p-4' type='text' placeholder='Search Items'></input>
-      <Link to=''>
-      <button className='w-20 h-100 bg-blue-600 rounded-md p-3  text-white' >Search</button></Link>
-      
+      <input className='w-80 h-13 rounded-md outline outline-2 outline-black p-4 hover:outline-slate-600 focus:outline-rose-700' 
+      type='text' placeholder='Search Items' value={search} 
+      onChange={e => setSearch(e.target.value)}></input>
+      {console.log(search)}
+     
       <Link to='/Item_add'>
-      <button className='w-20 h-100 bg-blue-600 rounded-md p-3  text-white' >New+</button>
+      <button className='w-20 h-100 bg-blue-600 rounded-md p-3  text-white  hover:bg-slate-700' >New+</button>
       </Link>
       </div>
       </div>
@@ -90,6 +97,8 @@ const renderItems = (data) => {
       <div className='flex bg-slate-300 justify-between p-8 rounded-md overflow-auto w-full h-min-2 h-screen  '>
         <div className='w-full'>
           {loading?'Loading....':renderItems(AllItems)}
+          
+          <p className='text-red-700'>{error && 'An Error Occured! Please try again'}</p>
           </div>
       </div>
     </div>
