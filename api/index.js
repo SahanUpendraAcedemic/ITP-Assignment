@@ -6,6 +6,7 @@ import userRoutes from './routes/user.route.js';
 import AuthRoute from './routes/Auth.route.js';
 import lostItemRoutes from './routes/lostItem.route.js'; 
 import ItemRoute from './routes/item.route.js';
+import Maintanceroute from './routes/maintance.route.js';
 
 dotenv.config(); 
 
@@ -34,3 +35,4 @@ app.use("/api/user", userRoutes);
 app.use("/api/Auth", AuthRoute);
 app.use("/api/lostItem", lostItemRoutes);
 app.use("/api/item", ItemRoute);
+app.use("/api/maintance", Maintanceroute)

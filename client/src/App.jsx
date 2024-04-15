@@ -6,6 +6,7 @@ import Signup from './Pages/signup';
 import Lostitemlist from './Pages/lost_item_list';
 import EditItemPage from './Pages/edit_lost_item';
 import Lostitemreport from './Pages/Lost_reports'
+import Addmaintance from './Pages/add_maintance_task'
 export default function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/lost_item_list" element={<Lostitemlist/>}/>
         <Route path='/edit_lost_item/:id'  element={<EditItemPage/>}/>
         <Route path='/Lost_reports'  element={<Lostitemreport/>}/>
+        <Route path='/add_maintance_task'  element={<Addmaintance/>}/>
 
       </Routes>
     </BrowserRouter>
