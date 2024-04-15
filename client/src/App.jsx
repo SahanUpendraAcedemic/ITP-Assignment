@@ -11,6 +11,7 @@ import MaintenanceList from './Pages/MaintenanceListPage';
 export default function App() {
   return (
     <BrowserRouter>
+    
       <Routes>
         <Route path="/Lost_reports" element={<LostReports />} />
         <Route path="/add_lost_item" element={<AddLostItem />} />
