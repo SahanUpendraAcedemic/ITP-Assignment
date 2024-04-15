@@ -41,3 +41,14 @@ export const createMaintenanceTask = async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to create maintenance task' });
   }
 };
+
+export const getAllMaintenanceTasks = async (req, res) => {
+    try {
+      // Fetch all maintenance tasks from the database
+      const maintenanceTasks = await Maintenance.find();
+      res.status(200).json(maintenanceTasks);
+    } catch (error) {
+      console.error('Error fetching maintenance tasks:', error);
+      res.status(500).json({ message: 'Failed to fetch maintenance tasks' });
+    }
+  };
