@@ -7,6 +7,10 @@ const ItemsPage = () => {
   const [items, setItems] = useState([]);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [searchItemId, setSearchItemId] = useState(''); // Add this line
+  
+
+
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -122,7 +126,7 @@ const ItemsPage = () => {
     return true;
   });
 
-  const handleSearchByItemId = () => {
+  /*const handleSearchByItemId = () => {
     if (searchItemId.trim() === '') {
       // If searchItemId is empty, show all items
       setFilteredItems(items);
@@ -131,20 +135,49 @@ const ItemsPage = () => {
       const searchedItems = items.filter(item => item.itemId.includes(searchItemId));
       setFilteredItems(searchedItems);
     }
+  };*/
+
+  const handleSearchByItemId = () => {
+    if (searchItemId.trim() === '') {
+      // If searchItemId is empty, show all items
+      setItems(items);
+    } else {
+      // If searchItemId is not empty, filter items based on searchItemId
+      const searchedItems = items.filter(item => item.itemId === searchItemId);
+      setItems(searchedItems);
+    }
   };
+  const handleClearSearch = async () => {
+    setSearchItemId(''); // Clear the search term
+  
+    // Fetch all items from the server
+    try {
+      const response = await fetch('/api/lostItem/lost_item_list');
+      const data = await response.json();
+      setItems(data);
+    } catch (error) {
+      console.error('Error fetching items:', error);
+    }
+  };
+
+
+
   return (
     <div className="flex justify-center items-center h-full">
       <div className="border border-blue-500 p-8 rounded-lg mt-44">
         <div className="flex flex-row justify-between">
-          <div className="w-1/4">
+          <div className="w-1/8">
             <h1 className="text-3xl font-bold mb-6">All lost Items</h1>
             
           </div>
-          <div className="w-1/4">
-          <input type="text" /*value={searchItemId} onChange={(e) => setSearchItemId(e.target.value)} */placeholder="Search by Item ID" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
-          <button onClick={handleSearchByItemId} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded ml-1">
+          <div className="w-3/8">
+          <input type="text" value={searchItemId} onChange={(e) => setSearchItemId(e.target.value)} placeholder="Search by Item ID" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
+            <button onClick={handleSearchByItemId} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
               Search
             </button>
+            <button onClick={handleClearSearch} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
+              Clear
+            </button>               
 
           </div>
 

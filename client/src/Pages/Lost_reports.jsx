@@ -63,6 +63,7 @@ const ReportsPage = () => {
         </table>
       </div>
     </div>
+    
   );
 };
 

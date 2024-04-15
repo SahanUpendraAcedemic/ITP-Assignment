@@ -13,3 +13,5 @@ admin.initializeApp({
 // Option 2: Export the storage bucket explicitly
 const storage = admin.storage().bucket();
 export default storage;*/
+
+// Path: api/config/firebase.js
