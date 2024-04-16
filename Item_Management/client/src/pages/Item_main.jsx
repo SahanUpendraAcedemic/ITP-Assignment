@@ -9,6 +9,7 @@ export default function Item_main() {
   const [input, setInput] = useState(''); //a save state for input data
 
   //fetching all the item data from api
+  //useEffect is a hook that runs after the first render and every update
   useEffect(() => {
   fetchItems(); //running async function to fetch data from api
 }, []);
@@ -18,15 +19,18 @@ const fetchItems = async () => {
   setError(false);  //trying unless error occurs, set the error status to false
   setLoading(true); //loding while fetching data form api
 
+  //fetching related data from the api
   const response = await fetch('/api/Item/getitem',{method:'post',headers:{'Content-Type':'application/json'}, //a workaround for api and client loading into two different ports by a proxy
   body:JSON.stringify(AllItems)});
-
+  
+  //turns fetched data to json
   const itemData = await response.json();//turns fetched data to json
   getAllItems(itemData); // assing json data to a state
   setLoading(false);   //ends loading state onece the fetching done
 }catch(error){
   setError(true); //if an error occurs set error true
 }};
+
 //deleting an item from the api
 const SetItemDelete = async (id) => { 
   try {
@@ -38,10 +42,12 @@ const SetItemDelete = async (id) => {
   }
 };
 
+//searching items by ItemID
 const searchItems = AllItems.filter((item) => 
   item.ItemID.toLowerCase().includes(search.toLowerCase()));
   console.log(searchItems);
 
+//a function to handle search through setting the search data to states
 const handleSearch = (e) => {
   e.preventDefault();
   fetchItems(searchItems);
@@ -83,6 +89,7 @@ const renderItems = (data) => {
     );
     };
 
+  //returning the main component of Item_main
   return (
     
     <div className='p-10 ml-72 justify-between'>

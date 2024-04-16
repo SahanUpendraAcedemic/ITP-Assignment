@@ -1,5 +1,6 @@
 import Item from '../models/Item.model.js';
 
+//adding items through the api
 export const AddItems = async (req,res,next) => {
     const{ItemID,ItemDiscription,ItemType,ItemNoOfUints}=req.body; 
     const newItem = new Item({
@@ -17,6 +18,7 @@ export const AddItems = async (req,res,next) => {
     
 };
 
+//rendering all the items from the api
 export const GetItems = async (req,res,next) => {
     try{
         const allItems = await Item.find({});
@@ -28,6 +30,7 @@ export const GetItems = async (req,res,next) => {
     
 };
 
+//deleting an item from the api
 export const DeleteItems = async(req,res,next) => {
     try{
         const id=req.params.ItemID;
@@ -42,20 +45,25 @@ export const DeleteItems = async(req,res,next) => {
         next(error);
     }
 }
-
+//updating the items from the api
 export const UpdateItems = async(req,res,next) => {
+    const {ItemID} = req.params; //getting the item id from the params
+    const {ItemDiscription,ItemType,ItemNoOfUints} = req.body; //getting the item data from the body
     try {
-        
-    } catch (error) {
-        
-    }
-}
+        //finding the item by id and updating the item data
+        const UpdateItems = await Item.findByIdAndUpdate(ItemID,
+            {ItemDiscription,ItemType,ItemNoOfUints},
+            {new:true});
 
-export const SearchItems = async(req,res,next) => {
-    try {
-        
+            //if the item is not found return a 404 status
+            if(!UpdateItems){
+                return res.status(404).json({massage:"Item not found!"});
+            }
+            //if the item is found return the updated item data to the frontend
+            res.status(200).json(UpdateItems);
         
     } catch (error) {
+        res.status(500).json({massage:"Item update failed!"});
         
     }
 }
