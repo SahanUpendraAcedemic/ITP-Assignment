@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Link, json} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export default function Item_main() {
   const [AllItems,getAllItems] = useState([]);
@@ -20,7 +20,8 @@ const fetchItems = async () => {
   setLoading(true); //loding while fetching data form api
 
   //fetching related data from the api
-  const response = await fetch('/api/Item/getitem',{method:'post',headers:{'Content-Type':'application/json'}, //a workaround for api and client loading into two different ports by a proxy
+  const response = await fetch('/api/Item/getitem',
+  {method:'post',headers:{'Content-Type':'application/json'}, //a workaround for api and client loading into two different ports by a proxy
   body:JSON.stringify(AllItems)});
   
   //turns fetched data to json
@@ -45,7 +46,6 @@ const SetItemDelete = async (id) => {
 //searching items by ItemID
 const searchItems = AllItems.filter((item) => 
   item.ItemID.toLowerCase().includes(search.toLowerCase()));
-  console.log(searchItems);
 
 //a function to handle search through setting the search data to states
 const handleSearch = (e) => {
@@ -73,13 +73,13 @@ const renderItems = (data) => {
           <tbody className='border-spacing-y-5'>
         {data.map((item) => (
           <tr key={item.ItemID} className=' outline-2 rounded-md outline outline-black ' >
-              <td className=' text-sm p-5'>{item.ItemID}</td>
-              <td className=' text-sm p-5'>{item.ItemType }</td>
-              <td className=' text-sm p-5'>{item.ItemDiscription}</td>
-              <td className=' text-sm p-5'>{item.ItemNoOfUints}</td>
+              <td className=' text-sm p-5' id='iid'>{item.ItemID}</td>
+              <td className=' text-sm p-5' id='itype'>{item.ItemType }</td>
+              <td className=' text-sm p-5' id='idisc'>{item.ItemDiscription}</td>
+              <td className=' text-sm p-5' id='noofunits'>{item.ItemNoOfUints}</td>
               <td className=' text-sm p-5'>{new Date(item.createdAt).toDateString()}</td>
               <td className=' text-sm p-5'>{new Date(item.updatedAt).toDateString()}</td>
-              <td><button className='w-20 bg-blue-600 rounded-md p-3  text-white  hover:bg-slate-700' >Edit</button></td>
+              <td><Link to={`/Item_update/${item.ItemID}`}><button className='w-20 bg-blue-600 rounded-md p-3  text-white  hover:bg-slate-700' >Edit</button></Link></td>
               <td><button className='w-20 bg-blue-600 rounded-md p-3  text-white   hover:bg-slate-700'  onClick={()=>SetItemDelete(item.ItemID)}>Delete</button> </td>
           </tr>
         ))}

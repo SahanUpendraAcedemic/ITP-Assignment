@@ -12,8 +12,7 @@ export default function App() {
   <Routes>
     <Route path='/' element={<Item_main/>} />
     <Route path='/Item_add' element={<Item_add/>} />
-    <Route path='/Item_Update' element={<Item_Update/>} />
+    <Route path='/Item_Update/:ItemID' element={<Item_Update/>} />
   </Routes>
   </BrowserRouter>;
-  
 }
