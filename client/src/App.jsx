@@ -7,7 +7,7 @@ import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import CreatePO from './pages/CreatePO';
 import UpdatePO from './pages/UpdatePO';
-import Search from './pages/Search';
+
 import Display from './pages/Display';
 import UpdateLowInventory from './pages/UpdateLowInventory';
 import CreateLowInventory from './pages/CreateLowInventory';
@@ -27,7 +27,6 @@ export default function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         
-        <Route path='/search' element={<Search />} />
        
         
        
