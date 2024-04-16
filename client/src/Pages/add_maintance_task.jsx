@@ -47,7 +47,8 @@ const AddMaintenanceTask = () => {
         description: '',
         status: 'Pending'
       });
-      console.log('Maintenance task added successfully');
+      alert('Maintenance task added successfully'); // Show an alert
+      window.location.href = '/MaintenanceListPage';
     } catch (error) {
       console.error('Error adding maintenance task:', error);
     }

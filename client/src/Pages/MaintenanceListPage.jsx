@@ -29,7 +29,28 @@ const MaintenanceListPage = () => {
 
   return (
     <div className="container mx-auto mt-20 mr-20">
+    <div className='flex flex-row justify-between'>
+    <div className='"w-1/4"'>
     <h1 className="text-3xl font-semibold mb-4">All Maintenance Tasks</h1>
+    </div>
+    <div className='w-2/4'>
+    <input type="text" /*value={searchItemId} onChange={(e) => setSearchItemId(e.target.value)} */placeholder="Search by Task Title" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
+            <button /*onClick={handleSearchByItemId} */className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
+              Search
+            </button>
+            <button /*onClick={handleClearSearch}*/ className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
+              Clear
+            </button>   
+    </div>
+
+
+    <div className='"w-1/4"'>
+      <Link to="/add_maintance_task" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Add Maintenance Task
+      </Link>        
+      </div >
+   
+    </div>
     <table className="w-full border border-blue-500">
       <thead>
         <tr className="bg-white border border-blue-500">
@@ -64,6 +85,12 @@ const MaintenanceListPage = () => {
         ))}
       </tbody>
     </table>
+    <div className="flex justify-end mt-5"> 
+        <button /*onClick={handleGenerateReport}*/ className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+              Generate Report
+            </button>
+
+        </div>
   </div>
   
 
