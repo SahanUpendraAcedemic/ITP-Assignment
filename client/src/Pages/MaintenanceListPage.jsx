@@ -44,7 +44,7 @@ const MaintenanceListPage = () => {
     </div>
 
 
-    <div className='"w-1/4"'>
+    <div className='w-1/4 flex justify-end mb-5'>
       <Link to="/add_maintance_task" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Add Maintenance Task
       </Link>        
