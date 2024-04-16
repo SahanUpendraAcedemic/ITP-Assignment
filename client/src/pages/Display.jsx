@@ -160,20 +160,17 @@ export default function Display() {
       console.log(error.message);
     }
   };
-  function downloadAsPdf() {
-    const doc = new jsPDF();
+ 
+  const objectIdToReadableId = (objectId) => {
+    // Convert the ObjectId to a string
+    const idString = objectId.toString();
   
-    // Capture the entire document body
-    html2canvas(document.body).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const imgWidth = doc.internal.pageSize.getWidth();
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    // Extract a portion of the string to create a more readable ID
+    const readableId = idString.substring(idString.length - 6); // Example: Take the last 6 characters
   
-      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      doc.save('whole_page.pdf');
-    });
-  }
-  
+    return `PO${readableId}`;
+  };
+
   return (
     <div className='p-3 w-2/4  mx-auto me-64' ref={aboutContentRef}>
      
@@ -189,7 +186,7 @@ export default function Display() {
 
       {userListings && userListings.length >= 0 && (
         <div className='flex flex-col gap-4'>
-          <h1 className='text-gray-700 font-roboto text-4xl mb-8'>
+          <h1 className='text-gray-700 font-roboto text-4xl mb-8 mt-10'>
             Purchase Orders
           </h1>
           
@@ -197,12 +194,13 @@ export default function Display() {
   <thead>
     <tr className="bg-gray-200 text-gray-700">
       
-      <th className="border border-gray-400 py-2 px-4">supplier Name</th>
-      <th className="border border-gray-400 py-2 px-4">Created Date</th>
-      <th className="border border-gray-400 py-2 px-4">Last Update</th>
-      <th className="border border-gray-400 py-2 px-4">Status</th>
-      <th className="border border-gray-400 py-2 px-4"></th>
-      <th className="border border-gray-400 py-2 px-4"></th>
+      <th className="border border-blue-700 py-2 px-4">ID</th>
+      <th className="border border-blue-700 py-2 px-4">SUPPLIER NAME</th>
+      <th className="border border-blue-700 py-2 px-4">CREATED DATE</th>
+      <th className="border border-blue-700 py-2 px-4">LAST UPDATE</th>
+      <th className="border border-blue-700 py-2 px-4">STATUS</th>
+      <th className="border border-blue-700 py-2 px-4">DELETE</th>
+      <th className="border border-blue-700 py-2 px-4">EDIT</th>
      
 
     </tr>
@@ -211,26 +209,30 @@ export default function Display() {
     {userListings.map((listing) => (
       <tr key={listing._id} className="border-b">
        
+       <td className="py-2 px-4 border">
+       <Link to={`/listing/${listing._id}`} className="underline text-blue-700">
+        {objectIdToReadableId(listing._id)}
+      </Link>
+            
+          
+        </td>
         <td className="py-2 px-4 border">
          
             {listing.supplierName}
           
         </td>
         <td className="py-2 px-4 border">
-           <Link
-            className="text-slate-700 font-semibold  truncate flex-1"
-            to={`/listing/${listing._id}`}
-          > 
+           
+            
+            
+         
             {formatDate(listing.createdAt)}
-          </Link> 
+         
         </td>
         <td className="py-2 px-4 border">
-          {/* <Link
-            className="text-slate-700 font-semibold truncate flex-1"
-            to={`/listing/${listing._id}`}
-          > */}
+          
             {formatDate(listing.updatedAt)}
-          {/* </Link> */}
+         
         </td>
         <td className="py-2 px-4 border">
         <div className="flex flex-col item-center">
@@ -263,7 +265,7 @@ export default function Display() {
     ))}
   </tbody>
 </table>
-<button onClick={downloadAsPdf} className='text-green-700 uppercase'>Download As PDF</button>
+
 
         </div>
       )}

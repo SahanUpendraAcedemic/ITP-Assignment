@@ -33,7 +33,7 @@ export default function DisplayLowInventory() {
   const handleShowLowInventory = async () => {
     try {
       setShowLowInventoryError(false);
-      const res = await fetch(`/api/user/lowinventories/${currentUser._id}`);
+      const res = await fetch(`/api/user/lowinventory/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
         setShowLowInventoryError(true); // Fix variable name here
@@ -69,18 +69,11 @@ export default function DisplayLowInventory() {
     <div className='p-3 w-2/4  mx-auto me-64'>
      
 
-      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
-      <p className='text-green-700 mt-5'>
-        {updateSuccess ? 'User is updated successfully!' : ''}
-      </p>
       
-      <p className='text-red-700 mt-5'>
-        {showLowInventoryError ? 'Error showing listings' : ''}
-      </p>
 
       {userLowInventories && userLowInventories.length >= 0 && (
         <div className='flex flex-col gap-4'>
-          <h1 className='text-gray-700 font-roboto text-4xl mb-8'>
+          <h1 className='text-gray-700 font-roboto text-4xl mb-8 mt-20'>
             Low Inventory Items
           </h1>
           
@@ -183,10 +176,16 @@ export default function DisplayLowInventory() {
     ))}
   </tbody>
 </table>
-
+<p className='text-red-700 mt-5'>{error ? error : ''}</p>
+      
+      
+      <p className='text-red-700 mt-5'>
+        {showLowInventoryError ? 'Error showing listings' : ''}
+      </p>
 
         </div>
       )}
     </div>
   );
 }
+

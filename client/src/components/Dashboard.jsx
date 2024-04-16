@@ -83,8 +83,8 @@ export default function  Dashboard  ()  {
   };
     return (
 
-        <div className="dashboard-container bg-gray-900 w-72 h-screen fixed left-0">
-        <div className="shopName flex items-center justify-center bg-gray-800 h-15 pt-1 pb-1  ">
+        <div className="dashboard-container bg-gray-900 w-72 h-screen fixed left-0 ">
+        <div className="shopName flex items-center justify-center bg-gray-800 h-15 pt-1 pb-1 pt-4  ">
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="35" height="40" viewBox="0 0 54 51" fill="none">
     <path d="M19.5 42.5658C18.61 42.5658 17.74 42.7964 16.9999 43.2284C16.2599 43.6605 15.6831 44.2746 15.3425 44.993C15.0019 45.7115 14.9128 46.5021 15.0865 47.2648C15.2601 48.0275 15.6887 48.7281 16.318 49.278C16.9474 49.8279 17.7492 50.2024 18.6221 50.3541C19.495 50.5059 20.3998 50.428 21.2221 50.1304C22.0443 49.8328 22.7471 49.3288 23.2416 48.6822C23.7361 48.0356 24 47.2754 24 46.4977C24 45.4549 23.5259 44.4548 22.682 43.7174C21.8381 42.98 20.6935 42.5658 19.5 42.5658ZM51 34.7019H15C14.2044 34.7019 13.4413 34.4257 12.8787 33.9341C12.3161 33.4425 12 32.7758 12 32.0806C12 31.3854 12.3161 30.7186 12.8787 30.2271C13.4413 29.7355 14.2044 29.4593 15 29.4593H40.4736C42.4279 29.4538 44.3275 28.8951 45.8878 27.8668C47.448 26.8386 48.5849 25.3962 49.128 23.7559L53.8843 9.20949C54.0119 8.81937 54.0341 8.40869 53.9492 8.00979C53.8643 7.61089 53.6746 7.23465 53.395 6.9107C53.1154 6.58674 52.7536 6.32392 52.338 6.14291C51.9224 5.96191 51.4644 5.86766 51 5.8676H14.2172C13.5962 4.34032 12.4513 3.01749 10.9387 2.07933C9.42602 1.14118 7.61912 0.633338 5.76417 0.625H3C2.20435 0.625 1.44129 0.901172 0.87868 1.39276C0.31607 1.88435 0 2.55109 0 3.2463C0 3.94151 0.31607 4.60825 0.87868 5.09984C1.44129 5.59143 2.20435 5.8676 3 5.8676H5.76417C6.41542 5.86959 7.04841 6.05585 7.56836 6.39849C8.08831 6.74114 8.46725 7.22173 8.64843 7.7683L9.11499 9.19623L9.11571 9.20949L14.0376 24.2615C11.7473 24.4768 9.63862 25.4512 8.1458 26.9841C6.65297 28.517 5.88964 30.4916 6.01298 32.5015C6.13632 34.5114 7.13693 36.4034 8.80879 37.788C10.4806 39.1726 12.6965 39.9444 15 39.9445H51C51.7957 39.9445 52.5587 39.6683 53.1213 39.1767C53.6839 38.6851 54 38.0184 54 37.3232C54 36.628 53.6839 35.9612 53.1213 35.4697C52.5587 34.9781 51.7957 34.7019 51 34.7019ZM47.023 11.1102L43.3594 22.3147C43.1784 22.8617 42.7993 23.3428 42.2791 23.6857C41.7588 24.0286 41.1253 24.2149 40.4736 24.2167H20.2632L19.4983 21.8779L15.9793 11.1102H47.023ZM43.5 42.5658C42.61 42.5658 41.74 42.7964 40.9999 43.2284C40.2599 43.6605 39.6831 44.2746 39.3425 44.993C39.0019 45.7115 38.9128 46.5021 39.0865 47.2648C39.2601 48.0275 39.6887 48.7281 40.318 49.278C40.9474 49.8279 41.7492 50.2024 42.6221 50.3541C43.495 50.5059 44.3998 50.428 45.2221 50.1304C46.0443 49.8328 46.7471 49.3288 47.2416 48.6822C47.7361 48.0356 48 47.2754 48 46.4977C48 45.4549 47.5259 44.4548 46.682 43.7174C45.8381 42.98 44.6935 42.5658 43.5 42.5658Z" fill="white"/>
             </svg> */}
@@ -122,14 +122,14 @@ export default function  Dashboard  ()  {
                 </svg>
             </button>
             {showInventoryLinks  && (
-        <div>
-          <Link to="/link1" className="block p-2 text-blue-500 hover:underline">
-            Link 1
+        <div className='pl-3'>
+          <Link to="/displaylowinventory" className="block p-2 text-blue-200 hover:underline">
+         Low Inventery Item List
           </Link>
-          <Link to="/link2" className="block p-2 text-blue-500 hover:underline">
-            Link 2
+          <Link to="/createlowinventoy" className="block p-2 text-blue-200 hover:underline">
+          Asign Low Inventory Level
           </Link>
-          <Link to="/link3" className="block p-2 text-blue-500 hover:underline">
+          <Link to="/link3" className="block p-2 text-blue-200 hover:underline">
             Link 3
           </Link>
         </div>
@@ -149,14 +149,14 @@ export default function  Dashboard  ()  {
                 </svg>
             </button>
             {showPurchasesLinks && (
-        <div>
-          <Link to="/create-po" className="block p-2 text-blue-500 hover:underline">
-            Create PO
+        <div className='pl-3'>
+          <Link to="/create-po" className="block p-2 text-blue-200 hover:underline">
+            Create Purchase Order
           </Link>
-          <Link to="/display" className="block p-2 text-blue-500 hover:underline">
-            PO LIST
+          <Link to="/display" className="block p-2 text-blue-200 hover:underline">
+            Purchase Orders List
           </Link>
-          <Link to="/link3" className="block p-2 text-blue-500 hover:underline">
+          <Link to="/link3" className="block p-2 text-blue-200 hover:underline">
             Link 6
           </Link>
         </div>
@@ -176,15 +176,15 @@ export default function  Dashboard  ()  {
                 </svg>
             </button>
             {showReportLinks && (
-        <div>
-          <Link to="/link1" className="block p-2 text-blue-500 hover:underline">
+        <div  className='pl-3'>
+          <Link to="/link1" className="block p-2 text-blue-200 hover:underline">
             Link 7
           </Link>
-          <Link to="/link2" className="block p-2 text-blue-500 hover:underline">
+          <Link to="/link2" className="block p-2 text-blue-200 hover:underline">
             Link 8
           </Link>
-          <Link to="/po-report" className="block p-2 text-blue-500 hover:underline">
-            PO Report
+          <Link to="/po-report" className="block p-2 text-blue-200 hover:underline">
+            Purchase Orders Report
           </Link>
         </div>
       )}
@@ -203,14 +203,14 @@ export default function  Dashboard  ()  {
                 </svg>
             </button>
             {showOperationLinks && (
-        <div>
-          <Link to="/link1" className="block p-2 text-blue-500 hover:underline">
+        <div  className='pl-3'>
+          <Link to="/link1" className="block p-2 text-blue-200 hover:underline">
             Link 10
           </Link>
-          <Link to="/link2" className="block p-2 text-blue-500 hover:underline">
+          <Link to="/link2" className="block p-2 text-blue-200 hover:underline">
             Link 11
           </Link>
-          <Link to="/link12" className="block p-2 text-blue-500 hover:underline">
+          <Link to="/link12" className="block p-2 text-blue-200 hover:underline">
             Link 12
           </Link>
         </div>

@@ -59,50 +59,63 @@ export default function POReport() {
 
   function downloadAsPdf() {
     const doc = new jsPDF();
-
+    
+    // Add title
+    doc.setFontSize(16);
+   
+    doc.text('Purchase Order Report', 10, 20);
+    
+    
+    
+ ;
+  
     html2canvas(document.querySelector("#tableToPrint")).then((canvas) => { // Capture only the table
       const imgData = canvas.toDataURL('image/png');
       const imgWidth = doc.internal.pageSize.getWidth();
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+  
+      // Add table image
+      doc.addImage(imgData, 'PNG', 10, 40, imgWidth - 20, imgHeight);
+      
+      // Save PDF
       doc.save('purchase_orders.pdf');
     });
   }
 
   return (
-    <div className="p-3 w-3/5 mx-auto me-40" ref={aboutContentRef}>
+    <div className="p-3 w-4/6 mx-auto ml-96  " ref={aboutContentRef}>
       <p className="text-red-700 mt-5">{error ? error : ''}</p>
       {loading && <p>Loading...</p>}
       {userListings && (
-        <div className="flex flex-col gap-4">
-          <h1 className="text-gray-700 font-roboto text-4xl mb-8">Purchase Orders</h1>
-          <div className="flex gap-4 mb-4">
+        <div className="flex flex-col gap-4 mt-16   p-10  " >
+          <h1 className="text-gray-700 font-roboto text-4xl mb-8">Purchase Order Report</h1>
+          <div className="flex gap-4 mb-4 " >
             <input
               type="text"
               placeholder="Search by name"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="border border-gray-400 py-2 px-4 rounded-md"
+              className="border border-blue-400 py-2 px-4 rounded-md"
             />
-            <button onClick={handleSearch} className="text-white uppercase bg-blue-500 px-2 rounded-md">
+            <button onClick={handleSearch} className="text-white uppercase bg-blue-500 px-2 rounded-md  mr-10  text-sm">
               Search By Name
             </button>
+
             <input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="border border-gray-400 py-2 px-4 rounded-md"
+              className="border border-blue-400 py-2 px-4 rounded-md"
             />
              
             <input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="border border-gray-400 py-2 px-4 rounded-md"
+              className="border border-blue-400 py-2 px-4 rounded-md"
             />
            
-            <button onClick={handleFilterByDate} className="text-white uppercase bg-blue-500 px-2 rounded-md">
+            <button onClick={handleFilterByDate} className="text-white uppercase bg-blue-500 px-2 rounded-md text-sm">
               Filter By Date
             </button>
           </div>
@@ -133,13 +146,10 @@ export default function POReport() {
                   <td className="py-2 px-4 border text-slate-700 font-semibold truncate flex-1">
                     {listing.orderQuentity}
                   </td>
-                  <td className="py-2 px-4 border">
-                    <Link
-                      className="text-slate-700 font-semibold truncate flex-1"
-                      to={`/listing/${listing._id}`}
-                    >
+                  <td className="py-2 px-4 border text-slate-700 font-semibold truncate flex-1">
+                    
                       {formatDate(listing.createdAt)}
-                    </Link>
+                    
                   </td>
                   <td className="py-2 px-4 border text-slate-700 font-semibold truncate flex-1">
                     {formatDate(listing.updatedAt)}
@@ -153,7 +163,7 @@ export default function POReport() {
               ))}
             </tbody>
           </table>
-          <button onClick={downloadAsPdf} className="text-green-700 uppercase">
+          <button onClick={downloadAsPdf} className=" uppercase text-white uppercase bg-green-500  rounded-md w-2/6 h-10 mt-5 ">
             Download As PDF
           </button>
         </div>

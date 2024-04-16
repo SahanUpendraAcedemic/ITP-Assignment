@@ -10,17 +10,17 @@ import {
  
   FaShare,
 } from 'react-icons/fa';
-import Contact from '../components/Contact';
+ import Contact from '../components/Contact';
 
 // https://sabe.io/blog/javascript-format-numbers-commas#:~:text=The%20best%20way%20to%20format,format%20the%20number%20with%20commas.
 
-export default function Listing() {
+export default function CurruntPO() {
   SwiperCore.use([Navigation]);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [contact, setContact] = useState(false);
+
+  
   const params = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
@@ -67,27 +67,12 @@ export default function Listing() {
               </SwiperSlide>
             ))}
           </Swiper> */}
-          <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
-            <FaShare
-              className='text-slate-500'
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                setCopied(true);
-                setTimeout(() => {
-                  setCopied(false);
-                }, 2000);
-              }}
-            />
-          </div>
-          {copied && (
-            <p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2'>
-              Link copied!
-            </p>
-          )}
+          
+         
           <div>
             
-            <div className="mx-auto mt-12 w-2/4 px-4 me-64">
-      <div className="text-gray-700 font-roboto text-4xl mb-8">
+            <div className="mx-auto pt-20 w-2/4 px-4 me-64">
+      <div className="text-gray-700 font-roboto text-4xl mb-12">
         Purchase Order Details
       </div>
       <form className="flex flex-col">

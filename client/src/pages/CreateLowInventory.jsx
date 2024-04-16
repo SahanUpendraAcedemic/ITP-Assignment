@@ -84,9 +84,9 @@ export default function CreateLowInventory() {
     }
   };
   return (
-    <div className="mx-auto mt-12 w-2/4 px-4 me-64">
-      <div className="text-gray-700 font-roboto text-4xl mb-8">
-        Create Low Inventory     </div>
+    <div className="mx-auto  w-2/4 px-4 me-64">
+      <div className="text-gray-700 font-roboto text-4xl mb-8 pt-24 pb-5">
+        Create Low Inventory Level    </div>
       <form onSubmit={handleSubmit} className="flex flex-col">
         
         
