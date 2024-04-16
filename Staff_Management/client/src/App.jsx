@@ -7,7 +7,7 @@ import Addshift from './pages/Addshift';
 import Shiftlist from './pages/Shiftlist';
 import Login from './pages/login';
 import Staffmanagement from './pages/Staffmanagement';
-import Header from './component/Header';
+
 import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 import Updatestaff from './pages/Updatestaff';
@@ -18,7 +18,7 @@ import AssignWorkerToShift from './pages/AssignWorkerToShift';
 export default function App() {
   return (
     <Router>
-      <Header />
+      
       <ToastContainer /> {/* Add ToastContainer here */}
       <Routes>
         <Route path="/" element={<Staffmanagement />} />

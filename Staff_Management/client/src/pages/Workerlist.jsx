@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './Dashboard';
+import Header from './Header';
 
 
 export default function Workerlist() {
@@ -74,10 +75,9 @@ export default function Workerlist() {
 
   return (
 <div className='flex'>
-<Dashboard />
 
-
-
+    <Header/>
+    <Dashboard />
 
 
     <div className="p-8 w-3/5 ml-72">

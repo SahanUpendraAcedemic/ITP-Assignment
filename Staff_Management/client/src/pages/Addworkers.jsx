@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom"
 import Dashboard from './Dashboard';
+import Header from './Header';
 
 export default function Addworkers() {
   const [formData, setFormData] = useState({
@@ -43,6 +44,8 @@ export default function Addworkers() {
   return (
 
     <div className='flexy'>
+      
+     <Header/> 
     <Dashboard />
 
 <div className='p-3 max-w-lg mx-auto w-4/5 mr-96'>

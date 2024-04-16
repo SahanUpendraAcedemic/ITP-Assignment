@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom"
 import Dashboard from "./Dashboard";
+import Header from './Header';
 
 export default function Staffmanagement() {
   return (
 
     <div className="flex">
 
-<Dashboard />
+      <Header/>
+      <Dashboard />
 
 
 

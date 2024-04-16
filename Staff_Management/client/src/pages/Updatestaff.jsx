@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom"
 import Dashboard from './Dashboard';
+import Header from './Header';
 
 export default function Updatestaff() {
   const [formData, setFormData] = useState({
@@ -66,7 +67,8 @@ export default function Updatestaff() {
 
     <div className='flex'>
 
-<Dashboard/>
+      <Header/>
+      <Dashboard/>
 
 
 

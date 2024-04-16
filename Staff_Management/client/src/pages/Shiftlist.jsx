@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './Dashboard';
+import Header from './Header';
 
 export default function Shiftlist() {
   const [shiftList, setShiftList] = useState([]);
@@ -57,7 +58,9 @@ export default function Shiftlist() {
   return (
 
     <div className='flex'>
-<Dashboard/>
+
+      <Header/>
+      <Dashboard/>
 
 
 

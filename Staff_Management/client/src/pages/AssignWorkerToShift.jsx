@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom"
 import Dashboard from './Dashboard';
+import Header from './Header';
 
 export default function AssignWorkerToShift() {
   const [shifts, setShifts] = useState([]);
@@ -63,12 +64,12 @@ export default function AssignWorkerToShift() {
   return (
     <div className='flex'>
     
+    <Header/>
+    <Dashboard/>
 
-    <Dashboard />
 
 
-
-     <div className='mt-14 container mx-auto w-3/5 ml-96 '>        
+    <div className='mt-14 container mx-auto w-3/5 ml-96 '>        
     <div className="container mx-auto">
       <div className="flex">
         <div className="w-1/2 p-4">

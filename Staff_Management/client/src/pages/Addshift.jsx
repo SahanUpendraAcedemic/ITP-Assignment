@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './Dashboard';
+import Header from './Header';
 
 
 
@@ -58,6 +59,7 @@ export default function AddShift() {
     return (
     <div className='flex'>
     
+    <Header/>
     <Dashboard />
                 
                 
