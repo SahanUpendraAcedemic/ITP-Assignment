@@ -6,14 +6,14 @@ function Item_Update(){
     ItemID:'',
     ItemType:'',
     ItemDiscription:'',
-    NoOfUnits:''
+    NoOfUnits:'',
   });
   
   const {ItemID} = useParams();
-  const history = useNavigate();
+  const navigate = useNavigate();
 
    const fetchItems = async () => {
-    const res = await fetch(`/api/Item/getitem/${ItemID}`,{
+    await fetch(`/api/Item/getitem/${ItemID}`,{
     method:'post',
     headers:{
       'Content-Type':'application/json'
@@ -27,7 +27,7 @@ function Item_Update(){
   useEffect(() => {
     fetchItems();
 
-  },[]);
+  },[ItemID]);
 
   const handleUpdate = (e) => {
     const {name,value} = e.target;
@@ -49,7 +49,7 @@ function Item_Update(){
       body:JSON.stringify(item)
     })
     .then(res=>res.json())
-    .then(() => history.push('/'))
+    .then(() => navigate('/'))
     .catch(err => console.log(err));
   }
   console.log(item);
@@ -62,16 +62,16 @@ function Item_Update(){
 
         <form className='items-start justify-normal p-3' onSubmit={handleSubmit}>
 
-        ItemID<input className='w-full rounded-md p-3 text-center' type="text" placeholder='ItemID' id='iid' value={item.ItemID} onChange={handleUpdate} readOnly/> 
+        ItemID<input className='w-full rounded-md p-3 text-center' type="text" value={item.ItemID} onChange={handleUpdate} readOnly/> 
 
-        Item Type<input className='w-full rounded-md p-3 text-center' type="text" placeholder='Item Type' id='itype'  value={item.ItemType} onChange={handleUpdate} /> 
+        Item Type<input className='w-full rounded-md p-3 text-center' type="text" name='ItemType' value={item.ItemType} onChange={handleUpdate} /> 
 
-        Item Discription<input className='w-full rounded-md p-3 text-center' type="text" placeholder='Item Discription' id='idisc' value={item.ItemDiscription} onChange={handleUpdate}/> 
+        Item Discription<input className='w-full rounded-md p-3 text-center' type="text"  name='ItemDiscription' value={item.ItemDiscription} onChange={handleUpdate}/> 
 
-        No. of Units<input className='w-full rounded-md p-3 text-center' type="text" placeholder='No. of Units' id='noofunits' value={item.NoOfUnits} onChange={handleUpdate}/> 
+        No. of Units<input className='w-full rounded-md p-3 text-center' type="number" name='ItemNoOfUints' value={item.ItemNoOfUints} onChange={handleUpdate}/> 
 
-       <button className='w-full bg-red-600 rounded-md p-3 my-3 text-white'>Update Item</button>
-       <button className='w-full bg-blue-600 rounded-md p-3  text-white'>Reset</button>
+       <button className='w-full bg-red-600 rounded-md p-3 my-3 text-white' type='submit'>Update Item</button>
+       <button className='w-full bg-blue-600 rounded-md p-3  text-white' type='reset'>Reset</button>
      </form>
     </div>
   </div></div>

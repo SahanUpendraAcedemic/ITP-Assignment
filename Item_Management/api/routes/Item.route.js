@@ -7,6 +7,6 @@ router.post('/',AddItems);
 router.post('/getitem',GetItems);
 router.post('/getitem/:ItemID', GetsingItems);
 router.delete('/item_delete',DeleteItems);
-router.put('/Item_update/:ItemID',UpdateItems);
+router.put('/item_update/:ItemID',UpdateItems);
 
 export default router;

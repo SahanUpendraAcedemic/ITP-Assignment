@@ -59,7 +59,7 @@ export default function Item_add() {
         id='ItemDiscription' onChange={handleChange}/> 
 
         No. of Units<input className='w-full rounded-md p-3 text-center'
-        type="text" 
+        type="number" 
         placeholder='No. of Units' 
         id='ItemNoOfUints' onChange={handleChange} /> 
 
