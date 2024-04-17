@@ -170,14 +170,20 @@ const ItemsPage = () => {
             <h1 className="text-3xl font-bold mb-6">All lost Items</h1>
             
           </div>
-          <div className="w-3/8">
-          <input type="text" value={searchItemId} onChange={(e) => setSearchItemId(e.target.value)} placeholder="Search by Item ID" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
+          <div className="w-3/8 flex flex-row ">
+           <div>
+        <input type="text" value={searchItemId} onChange={(e) => setSearchItemId(e.target.value)} placeholder="Search by Item ID" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
+        </div> 
+        <div>
             <button onClick={handleSearchByItemId} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
               Search
             </button>
+            </div>
+            <div>
             <button onClick={handleClearSearch} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
               Clear
-            </button>               
+            </button>     
+            </div>          
 
           </div>
 
@@ -192,14 +198,16 @@ const ItemsPage = () => {
             <div className="mr-4">
               <label htmlFor="endDate" className="mr-2">End Date:</label>
               <input type="date" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
-            </div>
-            <Link to={`/add_lost_item`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">
+            </div >
+            <div>
+            <Link to={`/add_lost_item`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded h-10 w-30">
               Add item
             </Link>
-           
+            </div>
           </div>
 
         </div>
+        <div>
         <table className="w-full">
           <thead>
             <tr>
@@ -226,17 +234,20 @@ const ItemsPage = () => {
                 <td className="border border-blue-500 px-4 py-2">{item.description}</td>
                 <td className="border border-blue-500 px-4 py-2">{formatDate(item.createdDate)}</td>
                 <td className="border border-blue-500 px-4 py-2">
+                  <div className='flex flex-row'>
                   <Link to={`/edit_lost_item/${item._id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">
                     Update
                   </Link>
                   <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleDelete(item._id)}>
                     Delete
                   </button>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        </div>
         <div className="flex justify-end mt-5"> 
         <button onClick={handleGenerateReport} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
               Generate Report
