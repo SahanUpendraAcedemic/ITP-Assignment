@@ -28,29 +28,27 @@ const MaintenanceListPage = () => {
   };
 
   return (
-    <div className="container mx-auto mt-20 mr-20">
-    <div className='flex flex-row justify-between'>
-    <div className='"w-1/4"'>
-    <h1 className="text-3xl font-semibold mb-4">All Maintenance Tasks</h1>
+    <div className="container mx-auto mt-20 mr-20 overflow-auto">
+  <div className='flex flex-col sm:flex-row justify-between mb-5'>
+    <div className='w-full sm:w-auto mb-4 sm:mb-0'>
+      <h1 className="text-3xl font-semibold">All Maintenance Tasks</h1>
     </div>
-    <div className='w-2/4'>
-    <input type="text" /*value={searchItemId} onChange={(e) => setSearchItemId(e.target.value)} */placeholder="Search by Task Title" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" />
-            <button /*onClick={handleSearchByItemId} */className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
-              Search
-            </button>
-            <button /*onClick={handleClearSearch}*/ className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-0 rounded ml-1">
-              Clear
-            </button>   
+    <div className='w-full sm:w-auto mb-4 sm:mb-0 flex flex-wrap items-center'>
+      <input type="text" placeholder="Search by Task Title" className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 w-full sm:w-auto mb-2 sm:mb-0 mr-0 sm:mr-2" />
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto h-10 mb-2 sm:mb-0 mr-0 sm:mr-2">
+        Search
+      </button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto h-10 mb-2 sm:mb-0">
+        Clear
+      </button>   
     </div>
-
-
-    <div className='w-1/4 flex justify-end mb-5'>
-      <Link to="/add_maintance_task" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <div className='w-full sm:w-auto flex justify-end'>
+      <Link to="/add_maintance_task" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-50 h-10">
         Add Maintenance Task
       </Link>        
-      </div >
-   
     </div>
+  </div>
+  <div className='overflow-x-auto'>
     <table className="w-full border border-blue-500">
       <thead>
         <tr className="bg-white border border-blue-500">
@@ -65,6 +63,7 @@ const MaintenanceListPage = () => {
           <th className="px-4 py-2 border border-blue-500">Cost Estimation</th>
           <th className="px-4 py-2 border border-blue-500">Description</th>
           <th className="px-4 py-2 border border-blue-500">Status</th>
+          <th className="px-4 py-2 border border-blue-500">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -73,7 +72,7 @@ const MaintenanceListPage = () => {
             <td className="px-4 py-2 border border-blue-500">{task.taskTitle}</td>
             <td className="px-4 py-2 border border-blue-500">{task.equipmentFacility}</td>
             <td className="px-4 py-2 border border-blue-500">{task.maintenanceType}</td>
-            <td className="px-4 py-2">{formatDateTime(task.scheduledDateTime)}</td>
+            <td className="px-4 py-2 border border-blue-500">{formatDateTime(task.scheduledDateTime)}</td>
             <td className="px-4 py-2 border border-blue-500">{task.duration}</td>
             <td className="px-4 py-2 border border-blue-500">{task.assignedTechnician}</td>
             <td className="px-4 py-2 border border-blue-500">{task.assignedTechnicianContact}</td>
@@ -81,17 +80,28 @@ const MaintenanceListPage = () => {
             <td className="px-4 py-2 border border-blue-500">{task.costEstimation}</td>
             <td className="px-4 py-2 border border-blue-500">{task.description}</td>
             <td className="px-4 py-2 border border-blue-500">{task.status}</td>
+            <td className="px-4 py-2 border border-blue-500 action">
+              <div className='flex flex-row justify-between'>
+                <button onClick={() => handleEditTask(task._id)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Update
+                </button>
+                <button onClick={() => handleDeleteTask(task._id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                  Delete
+                </button>
+              </div>
+            </td>
           </tr>
         ))}
       </tbody>
     </table>
-    <div className="flex justify-end mt-5"> 
-        <button /*onClick={handleGenerateReport}*/ className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-              Generate Report
-            </button>
-
-        </div>
   </div>
+  <div className="flex justify-end mt-5"> 
+    <button /*onClick={handleGenerateReport}*/ className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      Generate Report
+    </button>
+  </div>
+</div>
+
   
 
   );
