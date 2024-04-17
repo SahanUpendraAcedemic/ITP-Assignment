@@ -1,5 +1,5 @@
-import e from 'express';
 import Item from '../models/Item.model.js';
+
 
 //adding items through the api
 export const AddItems = async (req,res,next) => {
@@ -78,4 +78,26 @@ export const UpdateItems = async(req,res,next) => {
         res.status(500).json(error);
         
     }
+};
+
+export const GetItemreport = async(req,res,next) => {
+    try{
+        const doc = new JSpdf();
+        res.setHeader('Content-Type','application/pdf');
+        res.setHeader('Content-Disposition','attachment; filename=Itemreport.pdf');
+        doc.fontSize(25).text('Item Report',100,100);
+        const allItems = await Item.find({});
+        res.status(200).json(allItems);   
+        doc.pipe(res);
+        
+
+        allItems.forEach((item,index) => {
+            doc.fontSize(14).text(`${item.ItemID}:${item.ItemDiscription}`,100,150 + (index*25));
+        });
+        doc.end();
+
+    }
+    catch(error){
+        next(error);
+    };
 };

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
+import {jsPDF} from 'jspdf';
+import 'jspdf-autotable';
+import Item from '../../../api/models/Item.model';
 
 export default function Item_main() {
   const [AllItems,getAllItems] = useState([]);
@@ -52,6 +55,26 @@ const handleSearch = (e) => {
   e.preventDefault();
   fetchItems(searchItems);
   renderItems(searchItems);
+}
+
+function generatePDF(item){
+  const doc = new jsPDF();
+  const tableCol = ["ItemID","ItemDiscription","ItemType","ItemNoOfUints"];
+  const tableRow = [];
+
+  item.forEach(item=>{
+    const itemData = [
+      item.ItemID,
+      item.ItemDiscription,
+      item.ItemType,
+      item.ItemNoOfUints
+    ];
+    tableRow.push(itemData);
+  });
+
+  doc.autoTable(tableCol,tableRow,{startY:20});
+  doc.text("Item Report",14,15);
+  doc.save("report.pdf");
 }
 
 //rendering all the items from the api
@@ -120,6 +143,7 @@ const renderItems = (data) => {
           <p className='text-red-700'>{error && 'An Error Occured! Please try again'}</p>
           </div>
       </div>
+      <button className='w-full my-10 bg-blue-600 rounded-md p-3  text-white  hover:bg-slate-700' onClick={() => generatePDF(AllItems)}>Genarate Item Report</button>
     </div>
   )
 }

@@ -46,7 +46,7 @@ export default function Item_add() {
         ItemID<input className='w-full rounded-md p-3 text-center' 
         type="text" 
         placeholder='ItemID' 
-        id='ItemID' onChange={handleChange}/> 
+        id='ItemID' onChange={handleChange} required pattern="[A-Z]\d{4}"/> 
 
         Item Type<input className='w-full rounded-md p-3 text-center' 
         type="text" 
@@ -61,7 +61,7 @@ export default function Item_add() {
         No. of Units<input className='w-full rounded-md p-3 text-center'
         type="number" 
         placeholder='No. of Units' 
-        id='ItemNoOfUints' onChange={handleChange} /> 
+        id='ItemNoOfUints' onChange={handleChange} required/> 
 
         <button className='w-full bg-red-600 rounded-md p-3 my-3 text-white'>{loading?'Adding Item...':'Add Item'}</button>
         <button type='reset' className='w-full bg-blue-600 rounded-md p-3  text-white'>Reset</button>
