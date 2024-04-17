@@ -55,7 +55,7 @@ const AddMaintenanceTask = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-20 ml-72">
+    <div className="max-w-lg mx-auto mt-20 ml-72 border border-blue-500 p-8 rounded-lg mb-10">
       <h2 className="text-xl font-semibold mb-4">Add Maintenance Task</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
