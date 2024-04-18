@@ -38,7 +38,7 @@ const fetchItems = async () => {
 //deleting an item from the api
 const SetItemDelete = async (id) => { 
   try {
-    const res = await fetch ('api/Item/item_delete',
+    const res = await fetch (`api/Item/item_delete/${id}`,
     {method:'DELETE',headers:{'Content-Type':'application/json'},
     body:JSON.stringify()}).then((res) => res.json());
   } catch (error) {
@@ -57,6 +57,7 @@ const handleSearch = (e) => {
   renderItems(searchItems);
 }
 
+//generating a pdf report on all avalable items
 function generatePDF(item){
   const doc = new jsPDF();
   const tableCol = ["ItemID","ItemDiscription","ItemType","ItemNoOfUints"];
@@ -96,14 +97,14 @@ const renderItems = (data) => {
           <tbody className='border-spacing-y-5'>
         {data.map((item) => (
           <tr key={item.ItemID} className=' outline-2 rounded-md outline outline-black ' >
-              <td className=' text-sm p-5' id='iid'>{item.ItemID}</td>
+              <td className=' text-sm p-5' id='iid' >{item.ItemID}</td>
               <td className=' text-sm p-5' id='itype'>{item.ItemType }</td>
               <td className=' text-sm p-5' id='idisc'>{item.ItemDiscription}</td>
               <td className=' text-sm p-5' id='noofunits'>{item.ItemNoOfUints}</td>
               <td className=' text-sm p-5'>{new Date(item.createdAt).toDateString()}</td>
               <td className=' text-sm p-5'>{new Date(item.updatedAt).toDateString()}</td>
               <td><Link to={`/Item_update/${item.ItemID}`}><button className='w-20 bg-blue-600 rounded-md p-3  text-white  hover:bg-slate-700' >Edit</button></Link></td>
-              <td><button className='w-20 bg-blue-600 rounded-md p-3  text-white   hover:bg-slate-700'  onClick={()=>SetItemDelete(item.ItemID)}>Delete</button> </td>
+              <td><button className='w-20 bg-blue-600 rounded-md p-3  text-white   hover:bg-slate-700'  onClick={()=>SetItemDelete(iid)}>Delete</button> </td>
           </tr>
         ))}
         </tbody>

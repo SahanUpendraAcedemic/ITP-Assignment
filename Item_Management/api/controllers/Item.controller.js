@@ -46,10 +46,12 @@ export const GetsingItems = async (req,res,next) => {
 //deleting an item from the api
 export const DeleteItems = async(req,res,next) => {
     try{
-        const item = await Item.findOneAndDelete(req.params.ItemID);
+        const ItemID = req.params.id;
+        const item = await Item.findOneAndDelete(ItemID);
         if(!item){
             return res.status(404).json({massage:"Item not found"});
         }
+        res.status(200).json({massage:"Item deleted successfully"});
 
     }
     catch(error){

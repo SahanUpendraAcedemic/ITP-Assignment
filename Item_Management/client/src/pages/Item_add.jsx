@@ -45,7 +45,7 @@ export default function Item_add() {
 
         ItemID<input className='w-full rounded-md p-3 text-center' 
         type="text" 
-        placeholder='ItemID' 
+        placeholder='ItemID - Ex: A1234' 
         id='ItemID' onChange={handleChange} required pattern="[A-Z]\d{4}"/> 
 
         Item Type<input className='w-full rounded-md p-3 text-center' 
