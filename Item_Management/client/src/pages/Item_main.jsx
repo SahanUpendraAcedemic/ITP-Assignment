@@ -84,7 +84,7 @@ const renderItems = (data) => {
       <div className='w-full '>
         <table className=' w-full border-separate border-spacing-y-5'>
           <thead className='bg-slate-700'>
-          <tr className=' outline outline-2 rounded-md m-5'>
+          <tr className=' outline outline-slate-950 outline-2 rounded-md m-5 text-white'>
             <th className='text-center text-lg p-5'>ItemID</th>
             <th className='text-center text-lg p-5'>Item Type</th>
             <th className='text-center text-lg p-5'>Item Discription</th>
